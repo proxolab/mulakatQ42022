@@ -11,13 +11,16 @@ class Bank extends Model
     protected $fillable = [
         'name',
     ];
+    protected $casts = [
+        'name' => 'integer',
+    ];
     public function accountTypes()
     {
         return $this->belongsToMany(AccountType::class, 'banks_interest', 'bank_id', 'account_type_id')->withPivot('period', 'housing_loan', 'transport_loan');
     }
     public function banks_interests()
     {
-        return $this->hasMany(BanksInterests::class, 'bank_id');
+        return $this->morphMany(BanksInterests::class, 'bank_id');
     }
     public function credits_max_amount()
     {

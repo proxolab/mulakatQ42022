@@ -15,5 +15,6 @@ class BanksInterests extends Pivot
     ];
     protected $cast = [
         'period' => 'integer',
+        'loan_percent' => 'string',
     ];
 }

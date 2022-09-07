@@ -21,11 +21,11 @@ class BankController extends Controller
 
     public function store(Request $request)
     {
-        $bank = Bank::create($request->only("name"));
-        foreach ($request->bank_insterests as $key => $value) {
-            $bank->banks_interests()->createMany($value);
+        $bank = Bank::create($request->only("name","banks_interests"));
+        foreach ($request->bank_isterests as $key => $value) {
+            $bank->banks_intrests()->createMany($value);
         };
-        $bank->credits_max_amount()->createMany($request->credits_max_amount);
+        $bank->credits_max_amout()->createMany($request->credits_max_amount);
         return response()->json($bank->load("banks_interests","credits_max_amount"), 201);
     }
 
